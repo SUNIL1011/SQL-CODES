@@ -1,0 +1,140 @@
+1. List the department without any employees in it.
+
+SELECT d.dname
+FROM dept d
+WHERE
+ NOT EXISTS (SELECT * FROM emp e WHERE d.deptno = e.deptno)
+
+2. List the name and job of the employees who does not report to anybody.
+
+SELECT ename, job
+FROM emp
+WHERE mgr IS NULL
+
+3. Write a query that will give you the names and jobs of all employees in New York with a commission above 10
+
+SELECT ename, job
+FROM emp
+WHERE deptno = (SELECT deptno
+				FROM dept
+                WHERE loc LIKE 'NEW YORK')
+
+4. How many employees work in Chicago?
+
+SELECT Count(e.ename)
+FROM emp e
+INNER JOIN dept d on
+e.deptno=d.deptno
+WHERE d.loc LIKE 'CHICAGO'
+
+
+5. Which employees work in Chicago?
+
+SELECT e.ename, e.job, d.loc
+FROM emp e
+INNER JOIN dept d on
+e.deptno=d.deptno
+WHERE d.loc LIKE 'CHICAGO'
+
+6. List the employees’ names and cities in which they work. Order the list by city.
+
+SELECT e.ename, d.loc
+FROM emp e
+INNER JOIN dept d on
+e.deptno=d.deptno
+ORDER BY d.loc
+
+
+7. Find the number of different employees and  number of  departments.
+
+SELECT COUNT(DISTINCT(e.ename)) as EMP, COUNT(DISTINCT(d.dname)) AS DEPT
+FROM emp e
+INNER JOIN dept d
+
+
+8. Display the employees who were hired before their managers.
+SELECT e.ename AS "EMP",m.ename AS "MGR"
+FROM emp e 
+JOIN emp m
+ON e.mgr=m.empno AND e.hiredate>m.hiredate
+
+
+
+9. Determine the number of managers without listing them.
+
+SELECT COUNT(DISTINCT(mgr))
+FROM emp
+
+
+
+10. Display the name and title of all employees who do not have a manager.
+SELECT ename, job
+FROM emp
+WHERE mgr is NULL
+
+
+11. Create a query to display the employee name and department number for employee SMITH.
+
+SELECT ename, deptno
+FROM emp
+WHERE ename LIKE 'SMITH'
+
+
+12. Display the salesmen who are not in Boston
+SELECT e.ename
+FROM emp e
+INNER JOIN dept d
+ON e.deptno=d.deptno
+WHERE e.job LIKE 'SALESMAN' AND d.loc NOT LIKE 'BOSTON'
+
+
+
+13. List the details of the employees along with their location
+
+SELECT e.*, d.loc
+FROM emp e
+INNER JOIN dept d
+WHERE e.deptno=d.deptno
+
+
+
+14. List the salesmen who are drawing salary less than Miller
+
+SELECT ename
+FROM emp
+WHERE job LIKE 'SALESMAN' AND sal<(SELECT sal
+	                           FROM emp
+                                   WHERE ename LIKE 'MILLER')
+
+
+15. Display the details of the employee working in Chicago
+
+SELECT *
+FROM emp
+WHERE deptno=(SELECT deptno
+	      FROM dept
+              WHERE loc LIKE 'CHICAGO')
+
+
+
+16. Find the names of all employees whose salaries are greater than the minimum salary for the Manager
+
+SELECT ename
+FROM emp
+WHERE sal > (SELECT MIN(sal)
+	     FROM emp
+             WHERE job LIKE 'MANAGER')
+
+17. Select the last name and job id from all employees whose department id is equal to Accounting.
+
+SELECT e.ename,e.empno,d.deptno
+FROM emp e
+INNER JOIN dept d
+ON e.deptno=d.deptno
+WHERE dname LIKE 'ACCOUNTING'
+
+18. Display those emp who are working as manager
+
+SELECT DISTINCT e.ename
+FROM emp e, emp m
+WHERE e.empno=m.mgr

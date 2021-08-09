@@ -1,0 +1,220 @@
+1. Write a query to list all the employees who are working as clerk
+
+SELECT ename
+FROM emp
+WHERE job LIKE 'CLERK'
+2. Write a query to list the employees who are working as clerks or managers
+
+SELECT ename
+FROM emp
+WHERE job LIKE  'CLERK' OR ‘MANAGER’
+
+3. Write a query to get the current date
+
+SELECT DATE('now')
+FROM emp
+
+4. Write a query to list the employees whose salaries are within the range of 500 and 1000
+
+SELECT ename
+FROM EMP
+WHERE sal BETWEEN 1500 AND 3000
+
+
+5. Write a query to list the employees who have joined in the month of December
+
+SELECT ename
+FROM emp
+WHERE hiredate LIKE ‘__-12%’
+
+6. Write a query to list the employees whose salaries are not within the range of 1000 and 2500
+
+SELECT ename 
+FROM emp
+WHERE sal NOT BETWEEN 1000 AND 2500
+
+7. Write a query who are getting 800, 950, 3000,5000
+
+SELECT ename 
+FROM emp
+WHERE sal IN (800, 950, 3000,5000)
+
+8. To list all the employees whose names are having ‘L’ as second character 
+
+SELECT ename
+FROM emp
+WHERE ename LIKE '_L%'
+
+9. To list all the employees whose names are having ‘D’ as last character
+
+SELECT ename
+FROM emp
+WHERE ename LIKE '%D'
+
+10. To list all the employees whose names are having just 5 characters as length? 
+
+SELECT ename
+FROM emp
+WHERE ename LIKE ‘_____’
+             
+11. To list all the employees whose names are starting with ‘T’ and ending with ‘R’ 
+
+SELECT ename
+FROM emp
+WHERE ename LIKE 'T%' AND '%R’
+
+
+12. Display those employees who's name contains "A"?
+
+SELECT ename
+FROM emp
+WHERE ename LIKE '%A%'
+
+13. Display those employee who joined the company before 19th of the month?
+
+SELECT ename,empno,sal
+FROM emp
+WHERE hiredate < '19-DEC-81'
+
+14. What is the employee number of 'James' 
+
+SELECT sal
+FROM emp
+WHERE ename = 'KING'
+
+15. What is the salary of 'king'?
+
+SELECT EMPNO
+FROM emp
+WHERE ename = 'JAMES'
+
+16. Who is the President for organization?
+
+SELECT ename
+FROM emp
+WHERE job  LIKE ‘PRESIDENT’
+
+17.  List all details of all the managers?
+
+SELECT *
+FROM emp
+WHERE job  LIKE ‘MANAGER’
+
+
+18. Give employee details for employees drawing commission?
+
+SELECT ename
+FROM emp
+WHERE COMM IS NOT NULL
+
+
+
+19. List employees who joined before april-1981?
+SELECT ename
+FROM emp
+WHERE hiredate< ('01-Apr-81')
+
+
+20. What is the salary of following: 
+King, Blake, Ford, Smith
+
+SELECT sal, ename
+FROM emp
+WHERE ename IN ('FORD','BLAKE','SMITH')
+
+21. Who is drawing salary less than 3500
+
+SELECT ename
+FROM emp
+WHERE sal < 3500
+
+23. List the details of all the clerks
+
+SELECT * 
+FROM emp
+WHERE job = 'CLERK'
+
+24. what is the annual salary for each the employees
+          
+SELECT sal*12 AS ‘ansal’
+FROM emp
+
+
+25. if there is a hike in monthly salary by 20% for ford, what will be his annual salary
+
+SELECT sal*1.2 AS ‘TOTAL sal’
+FROM emp
+WHERE ename LIKE ‘FORD’
+
+
+
+26. What is the total salary for each department
+
+SELECT SUM(sal) AS "TOTAL sal",DEPTNO
+FROM emp
+GROUP BY DEPTNO
+
+
+27. Who is drawing the lowest salary in dept 10
+
+SELECT MIN(sal), ename
+FROM emp
+WHERE DEPTNO = 10
+GROUP BY sal
+HAVING MIN(sal)
+
+28. What is the average salary for Managers
+ 
+SELECT job, AVG(sal)
+FROM emp
+WHERE job = 'MANAGER'
+
+29. What is the total salary for salesman
+
+
+SELECT job, SUM(sal)
+FROM emp
+WHERE job = 'SALESMAN'
+
+
+30. Which department is having the lowest average salary?
+
+SELECT deptno,AVG(sal) AS 'AVG'
+FORM emp 
+GROUP BY deptno
+HAVING MIN(AVG)
+
+
+31. How many persons are in each role
+
+
+SELECT COUNT(job), job
+FROM emp
+GROUP BY job
+
+32. What is the highest salary among analyst
+
+SELECT ename, MAX(sal) as Hsal
+FROM emp
+WHERE job LIKE 'ANALYST'
+
+
+
+33. What is the highest commission paid
+
+SELECT ename,MAX(comm) as HIGHEST
+FROM emp
+
+
+
+34. How many departments are there
+
+SELECT COUNT(dname)
+FROM dept
+
+
+35. List the names in which 3rd  character is L
+
+SELECT *
+FROM emp
+WHERE ename LIKE '__L%'

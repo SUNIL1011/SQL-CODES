@@ -1,0 +1,23 @@
+declare @mytime time(3)= '08:05:15.658' print @mytime
+
+declare @date date= '2000-05-25' print @date
+
+declare @datetime datetime = '2000-05-25 08:05:15.658' print @datetime
+
+select getdate()
+
+select datename(yy,'2000-05-25')
+
+select datepart(m,'2000-05-25')
+
+select day('2000-05-25')
+
+select month('2000-05-25')
+
+select year('2000-05-25')
+
+select datediff(dd,'2000-05-25','2003-06-01')
+
+select dateadd(mm,7,'2000-05-25')
+
+select isdate('2000-05-25')

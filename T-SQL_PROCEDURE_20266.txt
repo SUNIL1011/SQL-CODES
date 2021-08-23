@@ -1,0 +1,39 @@
+1. create a SP which accepts deptno and display
+all emp details who belong to that deptno 
+
+USE  ETG_TRAIN
+ CREATE PROCEDURE GET_EMP_DEPTNO1(@DEPTNO INT)
+ AS 
+ BEGIN 
+ SELECT empno,ename,job,deptno,comm,mgr from EMP WHERE @DEPTNO = DEPTNO
+ END
+
+2. create a SP which accepts empno and display
+his/her annual sal
+USE  ETG_TRAIN
+ CREATE PROCEDURE GET_ANSAL(@EMPNO INT)
+ AS 
+ BEGIN 
+ SELECT empno,SAL*12 AS ANSAL from EMP WHERE @EMPNO = EMPNO
+ END
+ GET_ANSAL 7839
+
+
+3. create a SP which accepts deptno and display
+how many employees working in that deptno
+ CREATE PROCEDURE COUNT_EMP1(@DEPTNO INT)
+ AS 
+ BEGIN 
+ SELECT COUNT(DEPTNO) from EMP WHERE @DEPTNO = DEPTNO
+ END
+ COUNT_EMP1 10
+
+ 
+4. create a SP which accepts deptno and display
+what is the min and max sal taken in that deptno
+CREATE PROCEDURE MIN_MAX(@DEPTNO INT)
+ AS 
+ BEGIN 
+ SELECT DEPTNO,MAX(SAL) AS MAX_SAL,MIN(SAL) AS MIN_SAL from EMP WHERE @DEPTNO = DEPTNO
+ END
+ MIN_MAX 10

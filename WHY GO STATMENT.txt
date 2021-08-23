@@ -1,0 +1,4 @@
+GO is not a Transact-SQL statement; it is a command recognized by the sqlcmd and osql utilities and SSMS
+SQL Server utilities interpret GO as a signal to send a batch of Transact-SQL statements to an instance of SQL Server.
+The batch of statements is composed of all statements entered since the last GO, or since the start of the ad hoc session or script if this is the first GO.
+A Transact-SQL statement cannot occupy the same line as a GO command. However, the line can contain comments.
